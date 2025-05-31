@@ -1,38 +1,55 @@
-const prompt = require("prompt");
+// Import the 'prompt' package
+const prompt = require('prompt');
 
+// Start the prompt system
 prompt.start();
 
-prompt.get(["userSelection"], function (err, result) {
+// Welcome message and instructions
+console.log(" Welcome to the Rock, Paper, Scissors Game!");
+console.log(" Type ROCK, PAPER, or SCISSORS when prompted.");
+console.log("------------------------------------------------");
+
+// Ask the user for input
+prompt.get(['userSelection'], function (err, result) {
   if (err) {
-    console.error("Error occurred");
+    console.error(" Error occurred:", err);
     return;
   }
-    const randomNumber = Math.random();
-  let computerSelection = "";
 
-  if (randomNumber <= 0.34) {
-    computerSelection = "PAPER";
-  } else if (randomNumber <= 0.67) {
-    computerSelection = "SCISSORS";
-  } else {
-    computerSelection = "ROCK";
+  const user = result.userSelection.toUpperCase();
+
+  // Validate user input
+  if (!['ROCK', 'PAPER', 'SCISSORS'].includes(user)) {
+    console.log(" Invalid input! Please type ROCK, PAPER, or SCISSORS only.");
+    return;
   }
 
-  console.log("Computer selected:", computerSelection);
-  
-  if (userSelection === computerSelection) {
-    console.log("It's a tie!");
+  // Generate computer selection
+  const randomNum = Math.random();
+  let computer = '';
+
+  if (randomNum < 0.34) {
+    computer = 'PAPER';
+  } else if (randomNum < 0.68) {
+    computer = 'SCISSORS';
+  } else {
+    computer = 'ROCK';
+  }
+
+  // Show selections
+  console.log(`🧍‍♂️ You chose:      ${user}`);
+  console.log(`🖥️ Computer chose: ${computer}`);
+
+  // Determine winner
+  if (user === computer) {
+    console.log("🔁 It's a tie!");
   } else if (
-    (userSelection === "ROCK" && computerSelection === "SCISSORS") ||
-    (userSelection === "PAPER" && computerSelection === "ROCK") ||
-    (userSelection === "SCISSORS" && computerSelection === "PAPER")
+    (user === 'ROCK' && computer === 'SCISSORS') ||
+    (user === 'SCISSORS' && computer === 'PAPER') ||
+    (user === 'PAPER' && computer === 'ROCK')
   ) {
-    console.log("User Wins!");
+    console.log(" You win!");
   } else {
-    console.log("Computer Wins!");
+    console.log(" Computer wins!");
   }
-
-
-  const userSelection = result.userSelection.toUpperCase();
-  console.log("User selected:", userSelection);
 });
