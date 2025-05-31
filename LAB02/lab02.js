@@ -20,6 +20,17 @@ prompt.get(["userSelection"], function (err, result) {
 
   console.log("Computer selected:", computerSelection);
   
+  if (userSelection === computerSelection) {
+    console.log("It's a tie!");
+  } else if (
+    (userSelection === "ROCK" && computerSelection === "SCISSORS") ||
+    (userSelection === "PAPER" && computerSelection === "ROCK") ||
+    (userSelection === "SCISSORS" && computerSelection === "PAPER")
+  ) {
+    console.log("User Wins!");
+  } else {
+    console.log("Computer Wins!");
+  }
 
 
   const userSelection = result.userSelection.toUpperCase();
