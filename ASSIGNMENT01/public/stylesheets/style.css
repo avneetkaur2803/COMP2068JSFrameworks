@@ -9,9 +9,11 @@ body {
 
 /* Header/Nav */
 nav {
-  background-color: #004080;
+  background-color: #a7cef5;
   padding: 10px 20px;
+  color: #333;
 }
+
 
 nav ul {
   list-style: none;
@@ -124,4 +126,3 @@ button {
 button:hover {
   background-color: #002a66;
 }
-
