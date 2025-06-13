@@ -77,3 +77,20 @@ form button {
 form button:hover {
   background-color: #003060;
 }
+footer {
+  background-color: #004080;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 40px;
+}
+
+footer a {
+  color: #ffcc00;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
