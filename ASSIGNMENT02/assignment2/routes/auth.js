@@ -48,4 +48,15 @@ router.get('/logout', (req, res) => {
   });
 });
 
+//  GitHub login
+router.get('/github', passport.authenticate('github', { scope: [ 'user:email' ] }));
+
+// GitHub callback
+router.get('/github/callback', 
+  passport.authenticate('github', { failureRedirect: '/auth/login' }),
+  (req, res) => {
+    res.redirect('/records'); // Redirect on success
+  });
+
+
 module.exports = router;
