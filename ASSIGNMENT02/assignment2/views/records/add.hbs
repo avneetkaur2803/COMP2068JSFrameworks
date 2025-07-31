@@ -1,23 +1,35 @@
-<h1>Add New Health Record</h1>
+<h1 class="mb-4">Add New Health Record</h1>
 
-<form action="/records/add" method="POST">
-  <label>Date:</label><br>
-  <input type="date" name="date" required><br><br>
+<form action="/records/add" method="POST" class="mb-5">
+  <div class="mb-3">
+    <label class="form-label">Date:</label>
+    <input type="date" name="date" class="form-control" required>
+  </div>
 
-  <label>Blood Pressure:</label><br>
-  <input type="text" name="bloodPressure"><br><br>
+  <div class="mb-3">
+    <label class="form-label">Blood Pressure:</label>
+    <input type="text" name="bloodPressure" class="form-control">
+  </div>
 
-  <label>Sugar Level:</label><br>
-  <input type="text" name="sugarLevel"><br><br>
+  <div class="mb-3">
+    <label class="form-label">Sugar Level:</label>
+    <input type="text" name="sugarLevel" class="form-control">
+  </div>
 
-  <label>Temperature (°C):</label><br>
-  <input type="number" step="0.1" name="temperature"><br><br>
+  <div class="mb-3">
+    <label class="form-label">Temperature (°C):</label>
+    <input type="number" step="0.1" name="temperature" class="form-control">
+  </div>
 
-  <label>Heart Rate:</label><br>
-  <input type="number" name="heartRate"><br><br>
+  <div class="mb-3">
+    <label class="form-label">Heart Rate:</label>
+    <input type="number" name="heartRate" class="form-control">
+  </div>
 
-  <label>Symptoms:</label><br>
-  <textarea name="symptoms"></textarea><br><br>
+  <div class="mb-3">
+    <label class="form-label">Symptoms:</label>
+    <textarea name="symptoms" class="form-control" rows="3"></textarea>
+  </div>
 
-  <button type="submit">Save</button>
+  <button type="submit" class="btn btn-success">Save Record</button>
 </form>

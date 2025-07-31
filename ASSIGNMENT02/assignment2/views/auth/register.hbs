@@ -1,10 +1,15 @@
-<h1>Register</h1>
-<form method="POST" action="/auth/register">
-  <label>Username:</label><br>
-  <input type="text" name="username" required><br><br>
+<h1 class="mb-4">Register</h1>
 
-  <label>Password:</label><br>
-  <input type="password" name="password" required><br><br>
+<form method="POST" action="/auth/register" class="mb-5">
+  <div class="mb-3">
+    <label class="form-label">Username:</label>
+    <input type="text" name="username" class="form-control" required>
+  </div>
 
-  <button type="submit">Register</button>
+  <div class="mb-3">
+    <label class="form-label">Password:</label>
+    <input type="password" name="password" class="form-control" required>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Register</button>
 </form>

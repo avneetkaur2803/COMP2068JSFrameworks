@@ -1,23 +1,35 @@
-<h1>Edit Health Record</h1>
+<h1 class="mb-4">Edit Health Record</h1>
 
-<form action="/records/edit/{{record._id}}" method="POST">
-  <label>Date:</label><br>
-  <input type="date" name="date" value="{{record.date}}" required><br><br>
+<form action="/records/edit/{{record._id}}" method="POST" class="mb-5">
+  <div class="mb-3">
+    <label class="form-label">Date:</label>
+    <input type="date" name="date" class="form-control" value="{{record.date}}" required>
+  </div>
 
-  <label>Blood Pressure:</label><br>
-  <input type="text" name="bloodPressure" value="{{record.bloodPressure}}"><br><br>
+  <div class="mb-3">
+    <label class="form-label">Blood Pressure:</label>
+    <input type="text" name="bloodPressure" class="form-control" value="{{record.bloodPressure}}">
+  </div>
 
-  <label>Sugar Level:</label><br>
-  <input type="text" name="sugarLevel" value="{{record.sugarLevel}}"><br><br>
+  <div class="mb-3">
+    <label class="form-label">Sugar Level:</label>
+    <input type="text" name="sugarLevel" class="form-control" value="{{record.sugarLevel}}">
+  </div>
 
-  <label>Temperature (°C):</label><br>
-  <input type="number" step="0.1" name="temperature" value="{{record.temperature}}"><br><br>
+  <div class="mb-3">
+    <label class="form-label">Temperature (°C):</label>
+    <input type="number" step="0.1" name="temperature" class="form-control" value="{{record.temperature}}">
+  </div>
 
-  <label>Heart Rate:</label><br>
-  <input type="number" name="heartRate" value="{{record.heartRate}}"><br><br>
+  <div class="mb-3">
+    <label class="form-label">Heart Rate:</label>
+    <input type="number" name="heartRate" class="form-control" value="{{record.heartRate}}">
+  </div>
 
-  <label>Symptoms:</label><br>
-  <textarea name="symptoms">{{record.symptoms}}</textarea><br><br>
+  <div class="mb-3">
+    <label class="form-label">Symptoms:</label>
+    <textarea name="symptoms" class="form-control" rows="3">{{record.symptoms}}</textarea>
+  </div>
 
-  <button type="submit">Update</button>
+  <button type="submit" class="btn btn-primary">Update Record</button>
 </form>

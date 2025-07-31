@@ -1,2 +1,22 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div class="text-center">
+  <h1 class="mb-4">Welcome to Health Diary</h1>
+  <p class="lead">Track your daily health — blood pressure, sugar level, temperature, and more.</p>
+  
+  <hr class="my-4">
+
+  {{#if user}}
+    <p class="mb-3">You are logged in as <strong>{{user.username}}</strong>.</p>
+
+    <a href="/records" class="btn btn-primary me-2">View Records</a>
+    <a href="/records/add" class="btn btn-success me-2">Add New Record</a>
+    <a href="/auth/logout" class="btn btn-outline-danger">Logout</a>
+
+  {{else}}
+    <p class="mb-4">To get started, please log in or register below:</p>
+
+    <a href="/auth/login" class="btn btn-success me-2">Login</a>
+    <a href="/auth/register" class="btn btn-primary me-2">Register</a>
+    <a href="/auth/github" class="btn btn-dark">Login with GitHub</a>
+  {{/if}}
+</div>
+
