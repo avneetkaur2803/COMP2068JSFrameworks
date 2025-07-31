@@ -1,21 +1,20 @@
 const connectDB = require('./config/db');
 connectDB(); // call the function to connect to MongoDB
+
 const session = require('express-session');
 const passport = require('passport');
+require('./config/passport')(passport);  // Load strategy early!
 
-
+const authRouter = require('./routes/auth');
+const indexRouter = require('./routes/index');
+const recordsRouter = require('./routes/records');
+const usersRouter = require('./routes/users');
 
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
-var indexRouter = require('./routes/index');
-var recordsRouter = require('./routes/records');
-
-var usersRouter = require('./routes/users');
-
 
 var app = express();
 
@@ -29,11 +28,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/records', recordsRouter);
-
-app.use('/users', usersRouter);
-
+//  Set up session and passport BEFORE routes
 app.use(session({
   secret: 'mysecretkey',
   resave: false,
@@ -43,21 +38,20 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./config/passport')(passport); 
+//  Now register routes
+app.use('/', indexRouter);
+app.use('/records', recordsRouter);
+app.use('/users', usersRouter);
+app.use('/auth', authRouter);
 
-
-// catch 404 and forward to error handler
+// 404 & Error handlers
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
   res.status(err.status || 500);
   res.render('error');
 });
