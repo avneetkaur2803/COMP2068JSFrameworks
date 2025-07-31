@@ -1,6 +1,8 @@
+const { ensureAuthenticated } = require('../middleware/auth');
 const express = require('express');
 const router = express.Router();
 const HealthRecord = require('../models/HealthRecord');
+
 
 //  Public route - Show all records
 router.get('/', async (req, res) => {
@@ -13,12 +15,12 @@ router.get('/', async (req, res) => {
 });
 
 //  Show the form to add a new health record
-router.get('/add', (req, res) => {
+router.get('/add', ensureAuthenticated, (req, res) => {
   res.render('records/add');
 });
 
 //  Handle form submission and save new record
-router.post('/add', async (req, res) => {
+router.post('/add', ensureAuthenticated, async (req, res) => {
   try {
     const newRecord = new HealthRecord({
       date: req.body.date,
@@ -27,7 +29,7 @@ router.post('/add', async (req, res) => {
       temperature: req.body.temperature,
       heartRate: req.body.heartRate,
       symptoms: req.body.symptoms,
-      userId: null 
+      userId: req.user._id // Store logged-in user's ID
     });
 
     await newRecord.save();
@@ -38,7 +40,7 @@ router.post('/add', async (req, res) => {
 });
 
 //  Show the edit form with existing data
-router.get('/edit/:id', async (req, res) => {
+router.get('/edit/:id', ensureAuthenticated, async (req, res) => {
   try {
     const record = await HealthRecord.findById(req.params.id);
     res.render('records/edit', { record });
@@ -48,7 +50,7 @@ router.get('/edit/:id', async (req, res) => {
 });
 
 //  Handle form update
-router.post('/edit/:id', async (req, res) => {
+router.post('/edit/:id', ensureAuthenticated, async (req, res) => {
   try {
     await HealthRecord.findByIdAndUpdate(req.params.id, {
       date: req.body.date,
@@ -65,7 +67,7 @@ router.post('/edit/:id', async (req, res) => {
 });
 
 //  Show delete confirmation
-router.get('/delete/:id', async (req, res) => {
+router.get('/delete/:id', ensureAuthenticated, async (req, res) => {
   try {
     const record = await HealthRecord.findById(req.params.id);
     res.render('records/delete', { record });
@@ -75,7 +77,7 @@ router.get('/delete/:id', async (req, res) => {
 });
 
 //  Handle actual delete
-router.post('/delete/:id', async (req, res) => {
+router.post('/delete/:id', ensureAuthenticated, async (req, res) => {
   try {
     await HealthRecord.findByIdAndDelete(req.params.id);
     res.redirect('/records');
@@ -83,11 +85,5 @@ router.post('/delete/:id', async (req, res) => {
     res.status(500).send('Error deleting record');
   }
 });
-
-
-
-
-
-
 
 module.exports = router;
