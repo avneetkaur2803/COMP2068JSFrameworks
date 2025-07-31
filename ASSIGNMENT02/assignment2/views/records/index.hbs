@@ -1,0 +1,10 @@
+<h1>Health Records</h1>
+
+<ul>
+  {{#each records}}
+    <li>
+      <strong>{{this.date}}</strong> — BP: {{this.bloodPressure}}, Sugar: {{this.sugarLevel}}, Temp: {{this.temperature}}, HR: {{this.heartRate}}<br/>
+      Symptoms: {{this.symptoms}}
+    </li>
+  {{/each}}
+</ul>
