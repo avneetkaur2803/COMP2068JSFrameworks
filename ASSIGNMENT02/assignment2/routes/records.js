@@ -12,4 +12,31 @@ router.get('/', async (req, res) => {
   }
 });
 
+//  Show the form to add a new health record
+router.get('/add', (req, res) => {
+  res.render('records/add');
+});
+
+//  Handle form submission and save new record
+router.post('/add', async (req, res) => {
+  try {
+    const newRecord = new HealthRecord({
+      date: req.body.date,
+      bloodPressure: req.body.bloodPressure,
+      sugarLevel: req.body.sugarLevel,
+      temperature: req.body.temperature,
+      heartRate: req.body.heartRate,
+      symptoms: req.body.symptoms,
+      userId: null 
+    });
+
+    await newRecord.save();
+    res.redirect('/records');
+  } catch (err) {
+    res.status(500).send('Error saving record');
+  }
+});
+
+
+
 module.exports = router;
