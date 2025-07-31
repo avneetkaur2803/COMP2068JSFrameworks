@@ -4,7 +4,8 @@
   {{#each records}}
     <li>
       <strong>{{this.date}}</strong> — BP: {{this.bloodPressure}}, Sugar: {{this.sugarLevel}}, Temp: {{this.temperature}}, HR: {{this.heartRate}}<br/>
-      Symptoms: {{this.symptoms}}
+      Symptoms: {{this.symptoms}} <br/>
+      <a href="/records/edit/{{this._id}}">Edit</a>
     </li>
   {{/each}}
 </ul>

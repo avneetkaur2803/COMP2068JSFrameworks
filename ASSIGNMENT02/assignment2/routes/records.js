@@ -37,6 +37,35 @@ router.post('/add', async (req, res) => {
   }
 });
 
+//  Show the edit form with existing data
+router.get('/edit/:id', async (req, res) => {
+  try {
+    const record = await HealthRecord.findById(req.params.id);
+    res.render('records/edit', { record });
+  } catch (err) {
+    res.status(500).send('Error loading edit form');
+  }
+});
+
+//  Handle form update
+router.post('/edit/:id', async (req, res) => {
+  try {
+    await HealthRecord.findByIdAndUpdate(req.params.id, {
+      date: req.body.date,
+      bloodPressure: req.body.bloodPressure,
+      sugarLevel: req.body.sugarLevel,
+      temperature: req.body.temperature,
+      heartRate: req.body.heartRate,
+      symptoms: req.body.symptoms
+    });
+    res.redirect('/records');
+  } catch (err) {
+    res.status(500).send('Error updating record');
+  }
+});
+
+
+
 
 
 module.exports = router;

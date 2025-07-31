@@ -1,0 +1,23 @@
+<h1>Edit Health Record</h1>
+
+<form action="/records/edit/{{record._id}}" method="POST">
+  <label>Date:</label><br>
+  <input type="date" name="date" value="{{record.date}}" required><br><br>
+
+  <label>Blood Pressure:</label><br>
+  <input type="text" name="bloodPressure" value="{{record.bloodPressure}}"><br><br>
+
+  <label>Sugar Level:</label><br>
+  <input type="text" name="sugarLevel" value="{{record.sugarLevel}}"><br><br>
+
+  <label>Temperature (°C):</label><br>
+  <input type="number" step="0.1" name="temperature" value="{{record.temperature}}"><br><br>
+
+  <label>Heart Rate:</label><br>
+  <input type="number" name="heartRate" value="{{record.heartRate}}"><br><br>
+
+  <label>Symptoms:</label><br>
+  <textarea name="symptoms">{{record.symptoms}}</textarea><br><br>
+
+  <button type="submit">Update</button>
+</form>
