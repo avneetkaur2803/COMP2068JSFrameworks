@@ -64,6 +64,28 @@ router.post('/edit/:id', async (req, res) => {
   }
 });
 
+//  Show delete confirmation
+router.get('/delete/:id', async (req, res) => {
+  try {
+    const record = await HealthRecord.findById(req.params.id);
+    res.render('records/delete', { record });
+  } catch (err) {
+    res.status(500).send('Error loading delete page');
+  }
+});
+
+//  Handle actual delete
+router.post('/delete/:id', async (req, res) => {
+  try {
+    await HealthRecord.findByIdAndDelete(req.params.id);
+    res.redirect('/records');
+  } catch (err) {
+    res.status(500).send('Error deleting record');
+  }
+});
+
+
+
 
 
 

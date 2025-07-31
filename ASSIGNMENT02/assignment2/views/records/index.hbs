@@ -5,7 +5,8 @@
     <li>
       <strong>{{this.date}}</strong> — BP: {{this.bloodPressure}}, Sugar: {{this.sugarLevel}}, Temp: {{this.temperature}}, HR: {{this.heartRate}}<br/>
       Symptoms: {{this.symptoms}} <br/>
-      <a href="/records/edit/{{this._id}}">Edit</a>
+      <a href="/records/edit/{{this._id}}">Edit</a> |
+      <a href="/records/delete/{{this._id}}">Delete</a>
     </li>
   {{/each}}
 </ul>

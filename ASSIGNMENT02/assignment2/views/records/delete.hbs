@@ -1,0 +1,8 @@
+<h1>Delete Health Record</h1>
+
+<p>Are you sure you want to delete the record from <strong>{{record.date}}</strong>?</p>
+
+<form action="/records/delete/{{record._id}}" method="POST">
+  <button type="submit">Yes, Delete</button>
+  <a href="/records">Cancel</a>
+</form>
