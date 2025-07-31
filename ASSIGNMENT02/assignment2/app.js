@@ -1,5 +1,9 @@
 const connectDB = require('./config/db');
 connectDB(); // call the function to connect to MongoDB
+const session = require('express-session');
+const passport = require('passport');
+
+
 
 var createError = require('http-errors');
 var express = require('express');
@@ -29,6 +33,18 @@ app.use('/', indexRouter);
 app.use('/records', recordsRouter);
 
 app.use('/users', usersRouter);
+
+app.use(session({
+  secret: 'mysecretkey',
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./config/passport')(passport); 
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
