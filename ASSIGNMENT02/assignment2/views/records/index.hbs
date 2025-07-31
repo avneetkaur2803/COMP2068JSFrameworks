@@ -10,3 +10,28 @@
     </li>
   {{/each}}
 </ul>
+<hr>
+<h2>Blood Pressure Over Time</h2>
+<canvas id="bpChart" width="400" height="200"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const labels = [{{#each records}}"{{this.date}}",{{/each}}];
+  const data = {
+    labels: labels,
+    datasets: [{
+      label: 'Blood Pressure',
+      data: [{{#each records}}"{{this.bloodPressure}}",{{/each}}],
+      borderColor: 'blue',
+      backgroundColor: 'rgba(0, 0, 255, 0.1)',
+      tension: 0.2,
+    }]
+  };
+
+  const config = {
+    type: 'line',
+    data: data,
+  };
+
+  new Chart(document.getElementById('bpChart'), config);
+</script>
+
